@@ -4,7 +4,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
-const api = require('./server/routes/api');
+//const api = require('./server/routes/api');
 
 const app = express();
 
@@ -13,10 +13,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist/MacroRecipes')));
+app.use(express.static(path.join(__dirname, 'dist/browser')));
 
 // Set our api routes
-app.use('/api', api);
+//app.use('/api', api);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
