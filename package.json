@@ -11,7 +11,8 @@
     "dev:ssr": "ng run mox:serve-ssr",
     "serve:ssr": "node dist/server/main.js",
     "build:ssr": "ng build --configuration production && ng run mox:server:production",
-    "prerender": "ng run mox:prerender"
+    "prerender": "ng run mox:prerender",
+    "heroku-prebuild": "npm i --peer-legacy-deps"
   },
   "private": true,
   "dependencies": {
