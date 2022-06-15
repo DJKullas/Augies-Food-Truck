@@ -5,8 +5,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { DatePipe } from '@angular/common';
 
 import { NgProgressModule } from 'ngx-progressbar';
-import { NgProgressHttpModule } from 'ngx-progressbar/http';
-import { AgmCoreModule } from '@agm/core'; 
+import { NgProgressHttpModule } from 'ngx-progressbar/http'; 
 
 import { environment } from 'src/environments/environment';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -58,10 +57,6 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     HttpClientModule, 
     NgProgressModule,
     NgProgressHttpModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I',
-      libraries: ["places"]
-    }), 
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
