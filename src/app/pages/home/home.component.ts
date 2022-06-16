@@ -15,16 +15,27 @@ export class HomeComponent implements OnInit {
   public bestMenuItems:Array<MenuItem> = [];
   public todayMenu!:MenuItem;
 
+  todayMenuImageUrl: string = "";
+
   public settings: Settings;
   constructor(public appSettings:AppSettings, public appService:AppService, private readonly afs: AngularFirestore ) {
     this.settings = this.appSettings.settings;  
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
 
-    const menuUrl = this.afs.doc('menu_url');
+    var test = this.afs.doc('menu_url/menu_url');
+    var next = test.valueChanges();
+  
+    next.subscribe((res: any) => {
+      this.todayMenuImageUrl = res.mediaUrl;
+      console.log("here");
+      console.log(res);
+    })
+  
+    
 
-    console.log(menuUrl);
+  
 
     this.getSlides();
     this.getSpecialMenuItems();
