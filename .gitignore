@@ -4,8 +4,15 @@
 /dist
 /tmp
 /out-tsc
+
+.google_key.json
+
+.env
+
+/src/environments
 # Only exists if Bazel was run
 /bazel-out
+
 
 # dependencies
 /node_modules
@@ -48,3 +55,15 @@ Thumbs.db
 
 .editorconfig
 package-lock.json
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
+src/environments/environment.prod.ts
+src/environments/environment.prod.ts
+src/environments/environment.ts
+src/environments/environment.ssr.ts
+src/environments/environment.ts
+src/environments/environment.ssr.ts
+src/environments/environment.prod.ts
+google_key.json

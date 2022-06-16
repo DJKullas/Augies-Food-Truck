@@ -1,9 +1,20 @@
-const PUBLIC_DIR = '~/dist/browser';
+const PUBLIC_DIR = 'dist/browser';
 const express = require('express');
 const extName = require('ext-name');
 const path = require('path');
 const fs = require('fs');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const urlUtil = require('url');
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+require('dotenv').config()
+
+
+initializeApp({
+  credential: cert(serviceAccount)
+});
+
+const db = getFirestore();
 
 async function handleIncomingSMS(req, res) {
     console.log("Received SMS");
@@ -15,6 +26,7 @@ async function handleIncomingSMS(req, res) {
     for (var i = 0; i < NumMedia; i++) {  // eslint-disable-line
       const mediaUrl = body[`MediaUrl${i}`];
       const contentType = body[`MediaContentType${i}`];
+      var test = extName.mime(contentType);
       const extension = extName.mime(contentType)[0].ext;
       const mediaSid = path.basename(urlUtil.parse(mediaUrl).pathname);
       const filename = `${mediaSid}.${extension}`;
@@ -39,15 +51,18 @@ async function handleIncomingSMS(req, res) {
   }
   
   async function SaveMedia(mediaItem) {
-    const { mediaUrl, filename } = mediaItem;
-    if (NODE_ENV !== 'test') {
-      const fullPath = path.resolve(`${PUBLIC_DIR}/menu.${extension}`);
+    const { mediaUrl, filename, extension } = mediaItem;
+    if ('prod' !== 'test') {
+    //   const fullPath = path.resolve(`src/assets/images/menu.${extension}`);
   
      
-        const response = await fetch(mediaUrl);
-        const fileStream = fs.createWriteStream(fullPath);
+    //     const response = await fetch(mediaUrl);
+    //     const fileStream = fs.createWriteStream(fullPath);
   
-        response.body.pipe(fileStream);
+
+        db.doc('menu_url/menu_url').set({ mediaUrl: mediaUrl });
+
+        //response.body.pipe(fileStream);
       
   
     }

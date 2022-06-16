@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { AppService } from 'src/app/app.service';  
 import { MenuItem } from 'src/app/app.models';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +16,16 @@ export class HomeComponent implements OnInit {
   public todayMenu!:MenuItem;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService ) {
+  constructor(public appSettings:AppSettings, public appService:AppService, private readonly afs: AngularFirestore ) {
     this.settings = this.appSettings.settings;  
   }
 
   ngOnInit(): void {
+
+    const menuUrl = this.afs.doc('menu_url');
+
+    console.log(menuUrl);
+
     this.getSlides();
     this.getSpecialMenuItems();
     this.getBestMenuItems();

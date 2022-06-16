@@ -36,6 +36,11 @@ import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
 import { FooterComponent } from './theme/components/footer/footer.component'; 
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+// import { provideFirestore,getFirestore, } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 
 @NgModule({
@@ -56,6 +61,7 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     BrowserAnimationsModule,
     HttpClientModule, 
     NgProgressModule,
+    AngularFireModule.initializeApp(environment.firebase),
     NgProgressHttpModule,
     TranslateModule.forRoot({
       loader: {
@@ -65,14 +71,15 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
       }
     }),
     AppRoutingModule,
-    SharedModule    
+    SharedModule,
   ],
   providers: [ 
     AppSettings,
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
     DatePipe,
-    { provide: MatPaginatorIntl, useClass: MatPaginatorI18nService }
+    { provide: MatPaginatorIntl, useClass: MatPaginatorI18nService },
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })
