@@ -16,11 +16,11 @@
 
     <mat-sidenav-content class="page-wrapper" fxLayout="column" fxLayoutAlign="start stretch">
 
-        <header [ngClass]="'toolbar-'+settings.toolbar" [class.has-bg-image]="settings.headerBgImage"  [class.has-bg-video]="settings.headerBgVideo" [class.main-toolbar-fixed]="settings.mainToolbarFixed">
+        <!-- <header [ngClass]="'toolbar-'+settings.toolbar" [class.has-bg-image]="settings.headerBgImage"  [class.has-bg-video]="settings.headerBgVideo" [class.main-toolbar-fixed]="settings.mainToolbarFixed">
 
             <app-toolbar1 *ngIf="settings.toolbar == 1" (onMenuIconClick)="sidenav.toggle()"></app-toolbar1> 
         
-        </header>
+        </header> -->
           
         <main [class.content-offset-to-top]="settings.contentOffsetToTop">
             <router-outlet></router-outlet>              
@@ -29,10 +29,10 @@
         <div class="sticky-footer-helper" fxFlex="grow"></div>
 
         <app-footer></app-footer>
-       
+<!--        
         <div fxLayout="row" fxLayoutAlign="center center" class="options-icon" (click)="options.toggle()">
             <mat-icon>settings</mat-icon>
-        </div>
+        </div> -->
         
         <div *ngIf="showBackToTop" fxLayout="row" fxLayoutAlign="center center" class="back-to-top" (click)="scrollToTop()">
             <mat-icon>arrow_upward</mat-icon>
